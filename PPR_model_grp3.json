@@ -1,0 +1,91 @@
+{
+  "model_name": "Group 3 PPR - Shared Component Dependency Model",
+  "nodes": [
+    {"id": "R1", "name": "Assembly Worker", "type": "Resource", "attributes": {"level": 0}},
+    {"id": "R2", "name": "Assembly Area", "type": "Resource", "attributes": {"level": 0}},
+    {"id": "R3", "name": "Tool Box", "type": "Resource", "attributes": {"level": 0}},
+    {"id": "R4", "name": "Crane", "type": "Resource", "attributes": {"level": 0}},
+    {"id": "R5", "name": "Technical Instructions Manual", "type": "Resource", "attributes": {"level": 0}},
+    {"id": "R6", "name": "Quality Control Unit", "type": "Resource", "attributes": {"level": 0}},
+
+    {"id": "PR1", "name": "Prepare Base Structure", "type": "Process", "attributes": {"level": 1}},
+    {"id": "PR2", "name": "Install Cabin", "type": "Process", "attributes": {"level": 2}},
+    {"id": "PR3", "name": "Build Rear Support", "type": "Process", "attributes": {"level": 2}},
+    {"id": "PR4", "name": "Mount Big Axles", "type": "Process", "attributes": {"level": 3}},
+    {"id": "PR5", "name": "Assemble Wheels to Axle", "type": "Process", "attributes": {"level": 3}},
+    {"id": "PR6", "name": "Load Cargo Blocks", "type": "Process", "attributes": {"level": 4}},
+    {"id": "PR7", "name": "Final Inspection & Testing", "type": "Process", "attributes": {"level": 5}},
+
+    {"id": "P1", "name": "Axles (x3)", "type": "Product", "attributes": {"level": 2}},
+    {"id": "P2", "name": "Cabin", "type": "Product", "attributes": {"level": 2}},
+    {"id": "P3", "name": "Chassis", "type": "Product", "attributes": {"level": 1}},
+    {"id": "P4", "name": "Rear Support Frame", "type": "Product", "attributes": {"level": 2}},
+    {"id": "P5", "name": "Wheels (x6)", "type": "Product", "attributes": {"level": 3}},
+    {"id": "P6", "name": "Cargo Platform", "type": "Product", "attributes": {"level": 4}},
+    {"id": "P7", "name": "Heavy Transport Vehicle (Final Product)", "type": "Product", "attributes": {"level": 6}}
+  ],
+
+  "edges": [
+
+
+    {"source": "R1", "target": "PR1", "relation": "uses"},
+    {"source": "R1", "target": "PR2", "relation": "uses"},
+    {"source": "R1", "target": "PR4", "relation": "uses"},
+
+    {"source": "R2", "target": "PR3", "relation": "uses"},
+    {"source": "R2", "target": "PR4", "relation": "uses"},
+    {"source": "R2", "target": "PR5", "relation": "uses"},
+
+    {"source": "R3", "target": "PR1", "relation": "uses"},
+    {"source": "R3", "target": "PR2", "relation": "uses"},
+    {"source": "R3", "target": "PR3", "relation": "uses"},
+    {"source": "R3", "target": "PR5", "relation": "uses"},
+
+    {"source": "R4", "target": "PR6", "relation": "uses"},
+    {"source": "R5", "target": "PR6", "relation": "uses"},
+    {"source": "R5", "target": "PR7", "relation": "uses"},
+    {"source": "R6", "target": "PR7", "relation": "uses"},
+
+
+    {"source": "PR1", "target": "PR2", "relation": "flow"},
+    {"source": "PR2", "target": "PR3", "relation": "flow"},
+    {"source": "PR3", "target": "PR4", "relation": "flow"},
+    {"source": "PR4", "target": "PR5", "relation": "flow"},
+    {"source": "PR5", "target": "PR6", "relation": "flow"},
+    {"source": "PR6", "target": "PR7", "relation": "flow"},
+
+
+    {"source": "PR1", "target": "P3", "relation": "output"},
+    {"source": "PR2", "target": "P2", "relation": "output"},
+    {"source": "PR3", "target": "P4", "relation": "output"},
+    {"source": "PR4", "target": "P1", "relation": "output"},
+    {"source": "PR5", "target": "P5", "relation": "output"},
+    {"source": "PR6", "target": "P6", "relation": "output"},
+    {"source": "PR7", "target": "P7", "relation": "output"},
+
+
+    {"source": "R1", "target": "PR1", "relation": "uses"},
+    {"source": "R1", "target": "PR2", "relation": "uses"},
+    {"source": "R1", "target": "PR3", "relation": "uses"},
+    {"source": "R1", "target": "PR4", "relation": "uses"},
+    {"source": "R1", "target": "PR5", "relation": "uses"},
+
+    {"source": "R2", "target": "PR1", "relation": "uses"},
+    {"source": "R2", "target": "PR2", "relation": "uses"},
+    {"source": "R2", "target": "PR3", "relation": "uses"},
+    {"source": "R2", "target": "PR4", "relation": "uses"},
+    {"source": "R2", "target": "PR5", "relation": "uses"},
+
+    {"source": "R3", "target": "PR1", "relation": "uses"},
+    {"source": "R3", "target": "PR2", "relation": "uses"},
+    {"source": "R3", "target": "PR3", "relation": "uses"},
+    {"source": "R3", "target": "PR4", "relation": "uses"},
+    {"source": "R3", "target": "PR5", "relation": "uses"},
+
+
+    {"source": "P4", "target": "PR6", "relation": "input"},
+    {"source": "P5", "target": "PR6", "relation": "input"},
+    {"source": "P6", "target": "PR7", "relation": "input"}
+
+  ]
+}
